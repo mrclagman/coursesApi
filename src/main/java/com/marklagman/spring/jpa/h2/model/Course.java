@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,10 +21,14 @@ public class Course {
 
     }
 
+    public Course(String title, String description, boolean full) {
+        this.title = title;
+        this.description = description;
+        this.full = full;
+    }
+
     @Id
-    @SequenceGenerator(name="course_seq", initialValue = 3, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "course_seq")
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
         return id;
     }
@@ -64,14 +67,5 @@ public class Course {
     @Override
     public String toString() {
         return "Course [id=" + id + ", title=" + title + ", description=" + description + ", full=" + full + "]";
-    }
-
-    public Course(String title, String description, boolean full) {
-        this.title = title;
-        this.description = description;
-        this.full = full;
-    }
-
-    
-    
+    }    
 }
