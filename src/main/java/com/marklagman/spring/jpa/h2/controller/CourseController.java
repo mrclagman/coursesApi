@@ -94,9 +94,11 @@ public class CourseController {
 			_course.setTitle(course.getTitle());
 			_course.setDescription(course.getDescription());
 			_course.setFull(course.isFull());
+			courseRepository.save(_course);
 
 			map.put("message", "Course updated successfully!");
 			map.put("id", _course.getId());
+
 
 			return new ResponseEntity<>(map, HttpStatus.OK);
 		} else {
